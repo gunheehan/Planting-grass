@@ -1,0 +1,60 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+// 유티니 상에서 .cs 스크립트 파일을 만들게 되면 자동 완성
+// - 스크립트 파일 이름대로 클래스 이름 정해줌
+// - MonoBehaviour 클래스를 상속
+public class HelloClass10MonoBehaviour : MonoBehaviour
+{
+    // MonoBehaviour가 하는 일
+    // 1) Component : 게임오브젝트의 구성 요소
+    // 스크립트 파일(클래스)를 유니티 게임오브젝트에 넣어 컴포넌트화.
+
+    // 2) Awake() Start() Update() 함수를 가지고 있음.
+    // Awake() : 씬이 실행될 때 초기 컴포넌트 초기화 단계에서 호출. (첫 번째 프레임 전)
+    // Start() : 초기화가 끝난 후 호출. (첫 번째 프레임 전)
+    // Update() : 매 프레임마다 반복 호출.
+
+    // 3) new 키워드를 사용하여 동적 할당하지 않음.
+    // 유니티 씬에서 설계하여 자체 인스턴스화 함.
+    // 객체들이 그 인스턴스를 참조하는 방식으로 초기화 함.
+
+    // 변수들
+    public int value_int;
+    public float value_float;
+    public string value_string;
+    public bool value_bool;
+
+    // 유니티 컴포넌트들 참조
+    public Image image;
+    public Sprite sprite;
+    public Color color;
+    public Text text;
+    public GameObject obj;
+    public AudioSource source;
+    public MeshFilter fillter;
+    public Collider col;
+    public Material material;
+    public Light light_;
+    public Camera camera_;
+    public ParticleSystem particle;
+    public Animation animation_;
+
+    public GameObject[] gameObjects;
+    // Start is called before the first frame update
+    void Start()
+    {
+        // 현재 씬 안에 있는 인스턴스를 찾아 image 객체에 참조시킴.
+        // Object 클래스 : 컴포넌트들의 상위 클래스
+        image = FindObjectOfType<Image>();
+        gameObjects = FindObjectsOfType<GameObject>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
