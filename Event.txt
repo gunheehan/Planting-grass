@@ -35,3 +35,25 @@ public class Gun_20211214 : MonoBehaviour
         Onstart(5);
     }
 }
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class test2 : MonoBehaviour
+{
+    // Start is called before the first frame update
+    void Start()
+    {
+        Gun_20211214.Onstart += Abc;
+    }
+    public void Abc(int value)
+    {
+        print(value + "값이 증가했습니다.");
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}
