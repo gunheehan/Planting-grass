@@ -185,10 +185,12 @@ public class FPS_Gun : MonoBehaviour
         {
             ammoToFill = amooRemain;
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+        // 탄창을 채움
+        magAmmo += ammoToFill;
+        // 남은 탄약에서 탄창에 채운만큼 탄알을 뺌
+        amooRemain -= ammoToFill;
+        // 총의 현재 상태를 발사 준비된 상태로 변경
+        state = State.Ready;
     }
 }
