@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     private float walkSpeed;
     [SerializeField]
     private float runSpeed;
+    [SerializeField]
+    private float crouchSpeed;
     private float applySpeed;
 
     [SerializeField]
@@ -15,7 +17,14 @@ public class PlayerController : MonoBehaviour
 
     // 상태 변수
     private bool isRun = false;
+    private bool isCruoch = false;
     private bool isGround = true;
+
+    // 앉았을 때 얼마나 앉을지 결정하는 변수.
+    [SerializeField]
+    private float crouchPosY;
+    private float originPosY;
+    private float applyCrouchPosY;
 
     // 착지 여부
     private CapsuleCollider capsuleCollider;
@@ -38,6 +47,8 @@ public class PlayerController : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider>();
         myRigid = GetComponent<Rigidbody>();
         applySpeed = walkSpeed;
+        originPosY = Camera.transform.localPosition.y;
+        applyCrouchPosY = originPosY;
     }
 
     // Update is called once per frame
@@ -46,9 +57,40 @@ public class PlayerController : MonoBehaviour
         IsGround();
         TryJump();
         TryRun();
+        TryCrouch();
         Move();
         CameraRotation();
         CharacterRotation();
+    }
+
+    private void TryCrouch()
+    {
+        if(Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            Crouch();
+        }
+    }
+
+    private void Crouch()
+    {
+        isCruoch = !isCruoch;
+        
+        if(isCruoch)
+        {
+            applySpeed = crouchSpeed;
+            applyCrouchPosY = crouchPosY;
+        }
+        else
+        {
+            applySpeed = walkSpeed;
+            applyCrouchPosY = originPosY;
+        }
+        Camera.transform.localPosition = new Vector3(Camera.transform.localPosition.x, applyCrouchPosY, Camera.transform.localPosition.z);
+    }
+
+    IEnumerator CrouchCoroutine()
+    {
+        yield return 1.0f;
     }
 
     // 키보드 자판 Player 조작
