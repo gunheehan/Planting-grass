@@ -85,12 +85,23 @@ public class PlayerController : MonoBehaviour
             applySpeed = walkSpeed;
             applyCrouchPosY = originPosY;
         }
-        Camera.transform.localPosition = new Vector3(Camera.transform.localPosition.x, applyCrouchPosY, Camera.transform.localPosition.z);
+        StartCoroutine(CrouchCoroutine());
     }
 
     IEnumerator CrouchCoroutine()
     {
-        yield return 1.0f;
+        float _posY = Camera.transform.localPosition.y;
+        int count = 0;
+
+        while(_posY!=applyCrouchPosY)
+        {
+            count++;
+            _posY = Mathf.Lerp(_posY, applyCrouchPosY, 0.3f);
+            Camera.transform.localPosition = new Vector3(0, _posY, 0);
+            if (count > 15)
+                break;
+            yield return null;
+        }
     }
 
     // 키보드 자판 Player 조작
