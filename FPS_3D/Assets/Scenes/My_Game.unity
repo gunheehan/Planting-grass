@@ -451,7 +451,7 @@ MonoBehaviour:
   runSpeed: 2
   crouchSpeed: 3
   jumpForce: 5
-  crouchPosY: 2
+  crouchPosY: 0
   lookSensitivity: 1
   cameraRotationLimit: 45
   Camera: {fileID: 702849255}
@@ -478,7 +478,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1539620460}
-  - component: {fileID: 1539620459}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -486,26 +485,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1539620459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1539620458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 799026f2cef200c479f7b0b90ae3722f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 0
-  runSpeed: 0
-  crouchSpeed: 0
-  jumpForce: 0
-  crouchPosY: 0
-  lookSensitivity: 0
-  cameraRotationLimit: 0
-  Camera: {fileID: 0}
 --- !u!4 &1539620460
 Transform:
   m_ObjectHideFlags: 0

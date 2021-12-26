@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         CameraRotation();
         CharacterRotation();
     }
-
+    //앉기 시도
     private void TryCrouch()
     {
         if(Input.GetKeyDown(KeyCode.LeftControl))
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
             Crouch();
         }
     }
-
+    // 앉기 동작
     private void Crouch()
     {
         isCruoch = !isCruoch;
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
         }
         StartCoroutine(CrouchCoroutine());
     }
-
+    // 부드러운 동작 실행(앉기)
     IEnumerator CrouchCoroutine()
     {
         float _posY = Camera.transform.localPosition.y;
@@ -102,6 +102,7 @@ public class PlayerController : MonoBehaviour
                 break;
             yield return null;
         }
+        Camera.transform.localPosition = new Vector3(0, applyCrouchPosY, 0f);
     }
 
     // 키보드 자판 Player 조작
@@ -117,6 +118,7 @@ public class PlayerController : MonoBehaviour
 
         myRigid.MovePosition(transform.position + _velocity * Time.deltaTime);
     }
+    // 달리기 시도
     private void TryRun()
     {
         if(Input.GetKey(KeyCode.LeftShift))
@@ -128,19 +130,22 @@ public class PlayerController : MonoBehaviour
             RunningCancel();
         }
     }
-
+    // 달리기 실행
     private void Running()
     {
+        // 앉은 상태에서 달릴시 앉은 상태 해제.
+        if (isCruoch)
+            Crouch();
         isRun = true;
         applySpeed = runSpeed;
     }
-
+    // 달리기 취소
     private void RunningCancel()
     {
         isRun = false;
         applySpeed = walkSpeed;
     }
-
+    // 점프 시도
     private void TryJump()
     {
         if(Input.GetKeyDown(KeyCode.Space)&&!isGround)
@@ -148,11 +153,16 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
     }
-
+    // 점프
     private void Jump()
     {
+        // 앉은 상태에서 점프시 앉은 상태 해제.
+        if (isCruoch)
+            Crouch();
+
         myRigid.velocity = transform.up * jumpForce;
     }
+    // 지면 충돌 체크
     private void IsGround()
     {
         isGround = Physics.Raycast(transform.position, Vector3.down, capsuleCollider.bounds.extents.y + 0.1f);
