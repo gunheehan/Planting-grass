@@ -1,0 +1,8 @@
+Unity Database 연동공부(계정 로그인)
+
+Transform 이동 방식. Raycast이용하 충돌지점 씬전환 또는 
+Coroutine이용 천천히 이동
+
+앨리스 탐험
+
+AR 위치기반 프리마켓
